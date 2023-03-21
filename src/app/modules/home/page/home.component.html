@@ -1,0 +1,133 @@
+<div id="wrapper">
+    <!-- Sidebar-->
+    <div class="w-100">
+        <div class="row">
+            <!-- <div class="col-2">
+                <app-side-nav-bar></app-side-nav-bar>
+            </div> -->
+            <!-- Page content wrapper-->
+            <div class="col p-0">
+                <div id="page-content-wrapper">
+                    <!-- Top navigation-->
+                    <nav class="navbar navbar-expand-lg border-bottom bg-primary p-0">
+                        <div class="container-fluid">
+                            <div class="header-content d-flex">
+                            <div class="logo align-self-center">
+                                <img src="../../../../assets/images/logo-footer.png" alt="">
+                            </div>
+                            <div class="main-tabs d-flex">
+                                <ul class="navbar-nav ms-auto mt-2 mt-lg-0 tab-content" >
+                                    <li class="tab-item pl-4 pr-4" *ngFor="let item of primeMenuName" [class.active]="item.active">
+                                        <a class="tab-link" href="javascript:void(0)" [routerLink]="item.linkName" (click)="clickSubMenu(item.menuId)">
+                                            <img [src]="item.imageUrl" alt="">
+                                            <!-- <img src="/assets/images/product_billing.png" alt=""> -->
+                                            <span>{{item.menuName}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/images/confirmation_number_black_24dp.svg" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/images/Layer_2.svg" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/images/chat_black_24dp.svg" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/images/Group_383.svg" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)">
+                                            <img src="/assets/images/flat-user-icon-png-3.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="nav-item color-white">
+
+                                        <!-- <div class="font-weight-600">Jhon Wick</div>
+                                        <div>Product Owner</div> -->
+                                        <div class="font-weight-600">{{homeCheckMessage}}</div>
+                                        <div>{{adminName}}</div>
+                                        <div *ngIf="isShown" class="logoutSection">
+                                            <a id="logoutId" (click)="logoutRoute()">Logout</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="arrow_down" (click)="userName()">
+                                            <img src="/assets/images/down_arrow.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Page content-->
+                    <div class="container-fluid p-0">
+                        <div class="tabs-info mb-4" id="sub-tabs">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active">
+                                 <li [ngbNavItem]="i" class="pl-4" *ngFor="let item of subMenuList;let i=index">
+                                    <a class="nav-link" [ngClass]="[item.menuName == this.activeMenu ? 'active' : '']" [routerLink]="item.linkName">
+                                        <div>
+                                            <span class="pl-2">{{item.menuName}}</span>
+                                        </div>
+                                    </a>
+                                    <ng-template ngbNavContent>
+                                        
+                                    </ng-template>
+                                </li>
+                                <!-- <li [ngbNavItem]="1" class="pl-4">
+                                    <a ngbNavLink>
+                                        <div>
+                                            <img src="../../../../../assets/images/business_center_black_24dp.svg" alt="">
+                                            <span class="pl-2">Business Entity</span>
+                                        </div>
+                                    </a>
+                                    <ng-template ngbNavContent>
+                                        <app-view-business-entity></app-view-business-entity>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2">
+                                    <a ngbNavLink>
+                                        <div>
+                                            <img src="../../../../../assets/images/product-management.png" alt="">
+                                            <span class="pl-2">Product Management</span>
+                                        </div>
+                                    </a>
+                                    <ng-template ngbNavContent>
+                                        
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="3">
+                                    <a ngbNavLink>
+                                        <div>
+                                            <img src="../../../../../assets/images/person_outline_black_24dp.svg" alt="">
+                                            <span class="pl-2">User Management</span>
+                                        </div>
+                                    </a>
+                                    <ng-template ngbNavContent>
+                                        
+                                    </ng-template>
+                                </li> -->
+                            </ul>
+                        
+                            <div [ngbNavOutlet]="nav"></div>
+                        </div>
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

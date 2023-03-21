@@ -1,0 +1,259 @@
+<div class="component-wrapper pr-4 pl-4">
+
+  <div class="mt-3">
+
+  </div>
+  <div class="search-bar mt-17 row align-items-center justify-items-center">
+    <div class="form-group has-search col-md-4">
+      <label class="page-heading">
+        Service Management
+        <span>
+          <img src="/assets/images/help_outline_black_24dp.svg" alt="help outline icon">
+        </span>
+      </label>
+      <span class="form-control-search-icon">
+        <img src="/assets/images/search_black_24dp.svg" alt="search icons">
+      </span>
+      <input type="text" (keyup)="applyFilter($event)" class="form-control" placeholder="search">
+
+    </div>
+    <span class="mt-2">Filters:</span>
+    <div class="form-group col-md-2">
+      <label for="serviceType" class="form-label-16">Service Name</label>
+      <select (change)="applyFilter3($event)">
+        <option *ngFor="let i of serviceNamee">{{i}}</option>
+    </select>
+      <!-- <ng-select [items]="serviceNamee" (change)="applyFilter3($event)">
+      </ng-select> -->
+    </div>
+    <div class="form-group col-md-2">
+      <label for="serviceType" class="form-label-16">Service Type</label>
+      <select (change)="applyFilter1($event)">
+        <option *ngFor="let i of serviceTypeBox">{{i}}</option>
+    </select>
+      <!-- <ng-select [items]="serviceTypeBox" (change)="applyFilter1($event)">
+      </ng-select> -->
+    </div>
+    <div class="form-group col-md-2">
+      <label for="serviceType" class="form-label-16">Product</label>
+      <select (change)="applyFilter2($event)">
+        <option *ngFor="let i of productName">{{i}}</option>
+    </select>
+      <!-- <ng-select [items]="productName" (change)="applyFilter2($event)">
+      </ng-select> -->
+    </div>
+    <div class="col mt-3">
+      <button class="btn btn-primary ml-auto" (click)="createServiceManagement()">
+        <img src="/assets/images/add_white.svg" alt=""><span style="margin-left: 5px; font-size: 12px;">Create
+          Service</span></button>
+    </div>
+  </div>
+
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs service-management-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>All Services</a>
+      <ng-template ngbNavContent>
+
+        <table mat-table #allServiceTable [dataSource]="dataSource" multiTemplateDataRows class="w-100"
+          *ngIf="dataSource">
+          <ng-container matColumnDef="serviceGroup">
+            <th mat-header-cell *matHeaderCellDef> Service Group </th>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" hideToggle="true">
+              <td mat-cell *matCellDef="let element">
+                <!-- <mat-expansion-panel-header> -->
+                <img src="/assets/images/add_box_black_24dp.svg" *ngIf="!element.isOpen" (click)="expandData(element)"
+                  alt="expand data">
+                <img src="/assets/images/negative_yellow.png" *ngIf="element.isOpen" (click)="expandData(element)"
+                  alt="collapse data" style="width: 19px;height: 19px;">
+                {{element['serviceGroup']}}
+                <!-- </mat-expansion-panel-header> -->
+              </td>
+            </mat-expansion-panel>
+          </ng-container>
+          <ng-container matColumnDef="serviceType">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element['serviceType']}} </td>
+          </ng-container>
+          <ng-container matColumnDef="services">
+            <th mat-header-cell *matHeaderCellDef> Services </th>
+            <td mat-cell *matCellDef="let element"> {{element['services']}} </td>
+          </ng-container>
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef> Product </th>
+            <td mat-cell *matCellDef="let element"> {{element['productName']}} </td>
+          </ng-container>
+          <ng-container matColumnDef="createdTimestamp">
+            <th mat-header-cell *matHeaderCellDef> Published Date </th>
+            <td mat-cell *matCellDef="let element"> {{element['createdTimestamp']}} </td>
+          </ng-container>
+          <ng-container matColumnDef="subscribers">
+            <th mat-header-cell *matHeaderCellDef> # Subscribers </th>
+            <td mat-cell *matCellDef="let element"> {{element['subscribers']}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="statusItems">
+                <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                  [style]="statusColors[getStatus(element)]"></span>
+                <span>{{getStatus(element)}} </span>
+              </ng-container>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="action" width="30%">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <img src="/assets/images/view_icon.svg" alt="expand icon" class="expand_icon"
+                (click)="expandData(element)">
+            </td>
+          </ng-container>
+
+
+          <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+              <div class="example-element-detail"
+                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                <ng-container *ngIf="element.nestedRows">
+                  <tr *ngFor="let item of element.nestedRows" class="nested-rows">
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'serviceGroup')">{{item?.apiName}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'serviceType')">{{item?.serviceType}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'services')">{{item?.services}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'productName')">{{item?.productName}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'subscribers')">{{item?.subscribers}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'createdTimestamp')">{{item?.createdTimestamp}}</td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'status')">
+                      <ng-container *ngIf="statusItems">
+                        <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                          [style]="statusColors[getNestedRowStatus(item)]">
+                        </span>
+                        <span>{{getNestedRowStatus(item)}} </span>
+                      </ng-container>
+                    </td>
+                    <td mat-cell [ngStyle]="getCellStyle(item,nav,'action')">
+                      <div class="d-inline-block">
+
+                        <div class="btn-group" ngbDropdown container="body" role="group"
+                          aria-label="Button group with nested dropdown">
+                          <button class="btn btn-outline-secondary color-green font-light-14 p-0 active-service"
+                            [class.color-green]="activeServiceValue === 'Publish'"
+                            ngbDropdownToggle>{{item.action}}</button>
+                          <div class="dropdown-menu font-light-14 active-service-dropdown" ngbDropdownMenu>
+                            <div *ngFor="let status of item.actionItems">
+                              <button ngbDropdownItem
+                                (click)="selectActiveServiceStatus(item)">{{status.actionName}}</button>
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <span class="d-inline-block ml-2">
+                        <img src="/assets/images/view_icon.svg" alt="view icon" class="view_icon"
+                          (click)="viewServiceManagement(item)">
+                        <img src="/assets/images/edit_icon.svg" alt="expand icon" class="expand_icon"
+                          (click)="editServiceManagement(item)">
+                      </span>
+                    </td>
+                  </tr>
+                </ng-container>
+                <!-- <div class="example-element-diagram">
+                  <div class="example-element-position"> {{element.serviceGroup}} </div>
+                  <div class="example-element-symbol"> {{element.serviceType}} </div>
+                  <div class="example-element-name"> {{element.services}} </div>
+                  <div class="example-element-weight"> {{element.subscribers}} </div>
+                </div> -->
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+          <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+          </tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>For Approval</a>
+      <ng-template ngbNavContent>
+        <table mat-table [dataSource]="dataSource1" class="mt-4">
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef>Product</th>
+            <td mat-cell *matCellDef="let element"> {{element?.productName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="serviceName">
+            <th mat-header-cell *matHeaderCellDef>Service Name</th>
+            <td mat-cell *matCellDef="let element"> {{element?.serviceName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="requesterName">
+            <th mat-header-cell *matHeaderCellDef>Requester Name</th>
+            <td mat-cell *matCellDef="let element"> {{element?.requestedName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="businessName">
+            <th mat-header-cell *matHeaderCellDef>Business Entity</th>
+            <td mat-cell *matCellDef="let element"> {{element?.businessName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="billingCycle">
+            <th mat-header-cell *matHeaderCellDef>Billing Cycle</th>
+            <td mat-cell *matCellDef="let element"> {{element?.billingCycle}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="requestedDate">
+            <th mat-header-cell *matHeaderCellDef>Requested Date</th>
+            <td mat-cell *matCellDef="let element"> {{element?.requestedDate}} </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element"> {{element?.status}} </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status</th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="statusItems">
+                <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                  [style]="statusColors.Pending"></span>
+                <span>{{element?.status}} </span>
+              </ng-container>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action" width="30%">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <img src="/assets/images/view_icon.svg" alt="expand icon" class="expand_icon"
+                (click)="viewApproval(element)">
+                <select class="selectedOptions"  [(ngModel)]="options" (change)="selectedActions(element)">
+                  <option *ngFor="let i of options">
+                    {{ i.name }}
+                  </option>
+                </select>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="buttons" width="30%">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element">
+              
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay1"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnsToDisplay1;"></tr>
+        </table>
+
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mb-4"></div>
+  <mat-paginator #paginator [pageSizeOptions]="[5, 10]" [pageSize]="4">
+  </mat-paginator>
+</div>

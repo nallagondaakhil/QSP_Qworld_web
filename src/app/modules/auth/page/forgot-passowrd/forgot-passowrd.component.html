@@ -1,0 +1,77 @@
+<div class="row align-items-center justify-content-center vh-100">
+
+    <div class="col-sm-6 h-100 bg-image">
+
+        <div class="row align-items-center justify-content-center h-100">
+            <img class="img-fluid" src="/assets/images/forgot-password-bg.svg" alt="">
+        </div>
+
+    </div>
+
+    <div class="col-sm-6">
+        <div class="row align-items-center justify-content-center flex-column">
+            <img src="/assets/images/Quess_Logo.png" alt="" class="img-fluid">
+            <div class="text-center mt-42 heading">{{heading}}</div>
+            <div class="text-center mt-7 sub-heading col-sm-8">{{subHeading}}</div>
+            <div class="form-wrapper mt-59 col-sm-8">
+                <ng-container *ngIf="!isResetPassword">
+                    <fieldset>
+                        <form (ngSubmit)="validateEmail()" [formGroup]="forgotPasswordForm">
+                            <div class="form-group mb-26">
+                                <label class="d-block">
+                                    <input type="text" class="form-control" placeholder="Email ID/User ID"
+                                        formControlName="username">
+                                    <app-control-messages [control]="f['username']"></app-control-messages>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"
+                                    [disabled]="forgotPasswordForm.invalid" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </fieldset>
+                </ng-container>
+                <ng-container *ngIf="isResetPassword">
+                    <fieldset>
+                        <form (ngSubmit)="resetPassword()" [formGroup]="resetPasswordForm">
+                            <div class="form-group mb-26">
+                                <label class="d-block position-relative">
+                                    <div class="d-flex">
+                                        <input [attr.type]="showEnterPassword ? 'text' : 'password'"
+                                            class="form-control" placeholder="Enter password" formControlName="password"
+                                            maxlength="9">
+                                        <img src="/assets/images/visibility_black_24dp.svg"
+                                            class="position-absolute position-right-10 position-top-8 cursor-pointer"
+                                            alt="show password" (click)="showEnterPassword = !showEnterPassword">
+                                    </div>
+                                    <app-control-messages [control]="resetForm['password']"></app-control-messages>
+                                </label>
+                            </div>
+                            <div class="form-group mb-26">
+                                <label class="d-block position-relative">
+                                    <div class="d-flex">
+                                        <input [attr.type]="showConfirmPassword ? 'text' : 'password'"
+                                            class="form-control" placeholder="Confirm password"
+                                            formControlName="cPassword" maxlength="9">
+                                        <img src="/assets/images/visibility_black_24dp.svg"
+                                            class="position-absolute position-right-10 position-top-8 cursor-pointer"
+                                            alt="show password" (click)="showConfirmPassword = !showConfirmPassword">
+                                    </div>
+                                    <app-control-messages [control]="resetForm['cPassword']"></app-control-messages>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block"
+                                    [disabled]="resetPasswordForm.invalid" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </fieldset>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

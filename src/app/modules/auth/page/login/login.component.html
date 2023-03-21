@@ -1,0 +1,47 @@
+<div class="row align-items-center justify-content-center vh-100">
+  <div class="col-sm-6 p-0">
+    <div class="row align-items-center justify-content-center">
+      <img src="/assets/images/mask_group_30.png" alt="" class="img-fluid">
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="row align-items-center justify-content-center flex-column">
+      <img src="/assets/images/Quess_Logo.png" class="img-fluid" alt="">
+      <div class="text-center mt-42 heading">Sign In</div>
+      <div class="text-center mt-7 sub-heading">Use your Email/User ID to sign in</div>
+      <div class="form-wrapper mt-44 col-sm-8">
+        <fieldset>
+          <form (ngSubmit)="login()" [formGroup]="loginForm">
+            <div class="form-group mb-22">
+              <label class="d-block">
+                <input type="text" class="form-control" placeholder="Email ID/User ID" formControlName="username">
+                <app-control-messages [control]="f['username']"></app-control-messages>
+              </label>
+            </div>
+            <div class="form-group mb-32">
+              <label class="d-block">
+                <input type="password" name="password" autocomplete="on" class="form-control" placeholder="Password"
+                  formControlName="password">
+                <app-control-messages [control]="f['password']"></app-control-messages>
+              </label>
+            </div>
+            <div class="form-group mb-26">
+              <div class="form-check d-inline-block">
+                <input type="checkbox" class="form-check-input" id="keepLogIn">
+                <label class="form-check-label keep-login" for="keepLogIn">Keep me logged in</label>
+              </div>
+              <a class="d-inline-block float-right forgot-password" [routerLink]="['/auth/forgot-password']">Forgot
+                password?</a>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

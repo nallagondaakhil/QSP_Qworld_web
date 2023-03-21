@@ -1,0 +1,171 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Subscriber Management / </span> <span
+            class="text-primary"> Edit Subscriber Details</span>
+    </span>
+</div>
+<!-- <div class="view-component-wrapper pl-4 pr-4"> -->
+    <div class="edit-service-management-wrapper">
+        <!-- <app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+            <app-title-with-back-arrow [titleWithBack]="titleWithBack"></app-title-with-back-arrow> -->
+        <!-- <div class="mt-4 mb-4" >
+            <div >Edit Subscriber</div> -->
+        <div class="editalign">Edit Payroll service pending group</div>
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="border: 1px solid #D4E5F9;">
+                <li [ngbNavItem]="1">
+                    
+                    <a ngbNavLink>General Information</a>
+                    <ng-template ngbNavContent>
+                        <form (ngSubmit)="submitGeneralServiceData()" [formGroup]="editGeneralServiceForm">
+                            <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="form-group col-md-3">
+                                <label for="serviceType" class="form-label-16">Subscriber name</label>
+                                <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                    formControlName="serviceType" [items]="serviceTypes" bindLable="label"
+                                    bindValue="value">
+
+                                </ng-select>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3" style="boxdecor">
+                                <label for="serviceGroup" class="form-label-16">Subscription date</label>
+                                <div class="d-flex flex-column">
+                                    <div>
+                                        <input type="date" id="my date" value="2014-02-09" style="width: 311px;
+                                            height: 36px;">
+                                    </div>
+                                </div>
+                                <!-- <ng-select [searchable]="false" [clearable]="false" labelForId="serviceGroup"
+                                        formControlName="serviceGroup" [items]="serviceGroups" bindLable="label"
+                                        bindValue="value">
+    
+                                    </ng-select> -->
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3">
+                                <label for="serviceName" class="form-label-16">Service Type</label>
+                                <input type="text" class="form-control" id="serviceName" placeholder="Service Name"
+                                    formControlName="serviceName">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="form-group col-md-3">
+                                <label for="serviceDescription" class="form-label-16">Billing cycle</label>
+                                <!-- <textarea class="form-control" formControlName="serviceDescription"
+                                        id="serviceDescription"></textarea> -->
+                                <div class="d-flex flex-column">
+                                    <div>
+                                        <input type="date" id="my date" value="2014-02-09" style="width: 311px;
+                                            height: 36px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3">
+                                <label for="businessEntity" class="form-label-16">Transaction limit period</label>
+                                <ng-select [searchable]="false" [clearable]="false" labelForId="businessEntity"
+                                    formControlName="businessEntity" [items]="businessEnitities" bindLable="label"
+                                    bindValue="value">
+
+                                </ng-select>
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3">
+                                <label for="product" class="form-label-16">Transaction limit</label>
+                                <input type="text" class="form-control" id="serviceName" placeholder="00,000000"
+                                    formControlName="serviceName">
+                                <!-- <ng-select [searchable]="false" [clearable]="false" labelForId="product"
+                                        formControlName="product" [items]="products" bindLable="label" bindValue="value">
+    
+                                    </ng-select> -->
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+
+                        </div>
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="col-md-2">
+                                Is the User active?*
+                            </div>
+                            <div class="col-md-2 text-right" style="left: -175px;
+                            top: -9px;">
+                                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic"  >
+                                    <label ngbButtonLabel class="btn-primary">
+                                      <input ngbButton type="radio" value="Y">Yes
+                                    </label>
+                                    <label ngbButtonLabel class="btn-primary">
+                                      <input ngbButton type="radio" value="N"> No
+                                    </label>
+                                    
+                                  </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+
+                            <button class="btn btn-outline-secondary">Discard</button>
+                            <button type="submit" class="btn btn-primary ml-2" style="margin-right: 18px;">Save &
+                                Proceed</button>
+                        </div>
+
+                    </form>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <a ngbNavLink>Technical Information</a>
+                <ng-template ngbNavContent>
+                    <form (ngSubmit)="submitTechnicalServiceData()" [formGroup]="editTechnicalServiceForm">
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="form-group col-md-3">
+                                <label for="apiName" class="form-label-16">API details</label>
+                                <input type="text" class="form-control" id="apiName" placeholder="API details"
+                                    formControlName="apiName">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3">
+                                <label for="apiDescription" class="form-label-16">API Key</label>
+                                <input type="text" class="form-control" id="apiDescription" placeholder="API key"
+                                    formControlName="apiDescription">
+                            </div>
+                            <div class="col-md-1"></div>
+                            <div class="form-group col-md-3">
+                                <label for="apiMethod" class="form-label-16">Parameters</label>
+                                <input type="text" class="form-control" id="apiMethod" placeholder="parameter"
+                                    formControlName="apiMethod">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="form-group col-md-3">
+                                <label for="apiFormat" class="form-label-16">API Documentation</label>
+                                <input type="text" class="form-control" id="apiFormat" placeholder="download files"
+                                    formControlName="apiFormat">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                            <div class="form-group col">
+                                <button type="submit" class="btn btn-primary">Done</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </ng-template>
+            </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav"></div>
+        <!-- </div> -->
+    </div>
+<!-- </div> -->

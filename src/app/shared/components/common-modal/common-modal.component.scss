@@ -1,0 +1,78 @@
+::ng-deep html.cdk-global-scrollblock {
+  width: initial;
+  position: initial;
+  overflow-y: initial;
+}
+
+::ng-deep html.cdk-global-scrollblock body {
+  overflow: hidden;
+}
+
+::ng-deep html.cdk-global-scrollblock body .cdk-global-overlay-wrapper {
+  pointer-events: all;
+  display: block !important;
+  overflow: auto;
+  padding: 50px 0;
+  position: fixed;
+}
+
+::ng-deep html.cdk-global-scrollblock body .cdk-overlay-pane {
+  position: relative !important;
+  margin: auto !important;
+  max-width: 90vw;
+}
+
+::ng-deep html.cdk-global-scrollblock .cdk-overlay-backdrop {
+  position: fixed !important;
+}
+
+::ng-deep html.cdk-global-scrollblock .mat-dialog-container {
+  margin: 0 auto 0 !important;
+  height: auto !important;
+  overflow: initial !important;
+  border-radius: 5px;
+  padding: 0px !important;
+}
+
+::ng-deep html.cdk-global-scrollblock .mat-dialog-content {
+  max-width: none !important;
+  max-height: none !important;
+  overflow: initial !important;
+}
+.commom-modal {
+  &- {
+    &close {
+      display: block;
+      right: 0;
+      padding: 14px;
+      position: absolute;
+      cursor: pointer;
+      top: 0px;
+    }
+  }
+}
+
+.logout,
+.warning,
+.checkin,
+.common {
+  padding: 10px;
+  &- {
+    &head {
+      font-size: 28px;
+    }
+
+    &body {
+      font-size: 16px;
+    }
+
+    &ok {
+      &:focus,
+      &:hover {
+      }
+    }
+
+    &cancel {
+    }
+  }
+}

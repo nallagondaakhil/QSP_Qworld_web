@@ -1,0 +1,151 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">User Management / </span> <span class="text-primary">Create a new user</span>
+    </span>
+</div>
+
+<div class="p-4">
+    <div class="card-header" style="background-color: whitesmoke;">
+      Create a new user
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="submitUserData()" [formGroup]="createUserForm" autocomplete="off">
+            <div class="form-row" >
+            <div class="form-group col-md-4"  >
+                <label for="userName" class="form-label-16" >User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="User Name"
+                    formControlName="userName" style="background: white">
+                <app-control-messages [control]="f['userName']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+           </div>
+           <!-- <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="password" class="form-label-16">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="Password"
+                    formControlName="password">
+                <app-control-messages [control]="f['password']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+           </div> -->
+           <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="userEmailId" class="form-label-16">User Email ID</label>
+                <input type="text" class="form-control" id="userEmailId" placeholder="User Email ID"
+                    formControlName="userEmailId" style="background: white">
+                    <app-control-messages [control]="f['userEmailId']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+           <div class="form-row">
+            <div class="form-group col-md-4">  
+                <label for="userGroup" class="form-label-16">Select role group for the user</label>
+                <ng-select [searchable]="false" [clearable]="false" labelForId="userGroup"
+                        formControlName="userGroup" [items]="userGroupData" [bindLabel]="'roleType'"
+                        [bindValue]="'roleType'" (change)="applyFilter1($event)">
+
+                    </ng-select>
+                    <app-control-messages [control]="f['userGroup']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4" style="margin-left: -22px;">
+                <button type="submit" [disabled]="createUserForm.invalid" class="btn btn-primary ml-4" style="width: 72px;">Save</button>
+                <button type="button" (click)="backToPage()" class="btn btn-outline-secondary" style="margin-left: 14px;">Discard</button>
+                <!-- <button type="submit" (click)="backToPage()" class="btn btn-primary ml-4">Back</button> -->
+            </div>
+           <div class="col-md-4">
+            <!-- <ng-container *ngIf='currentRole == "Platform Developer"'>
+              <div class="box arrow-left">
+                  <p>
+                      <b style="text-align: center;">
+                          Platform Developer
+                      </b><br><br>
+                      Platform Developer is a long established fact that a reader will be distracted by a readable 
+                      content of a page when looking at its layout.
+                  </p>
+              </div>
+          </ng-container> -->
+          <ng-container *ngIf='currentRole == "Product Owner"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Product Owner
+                    </b><br><br>
+                    Product Owner is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='currentRole == "Platform Admin"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Platform Admin
+                    </b><br><br>
+                    Platform Admin it is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='currentRole == "Product Developer"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Product Developer
+                    </b><br><br>
+                    Product Developer is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='currentRole == "Business Entity Admin"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Bussiness Entity Admin
+                    </b><br><br>
+                    Business Entity Admin is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='currentRole == "Subscriber"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Subscriber
+                    </b><br><br>
+                     Subscriber is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf='currentRole == "Platform Developer"' else = "">
+            <div class="box arrow-left">
+                <div><button (click)="createUserForm.reset()" (click)="closeDialog()" class="close-icon"></button></div>
+                <p>
+                    <b style="text-align: center;">
+                        Platform Developer
+                    </b><br><br>
+                    Platform Developer is a long established fact that a reader will be distracted by a readable 
+                    content of a page when looking at its layout.
+                </p>
+            </div>
+        </ng-container>
+           </div>
+           <div class="col-md-4"></div>
+        </div>
+    </form>
+    </div>
+  </div>

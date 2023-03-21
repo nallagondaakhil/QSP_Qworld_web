@@ -1,0 +1,224 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Performance of services  / </span> <span class="text-primary"> View Logs of Service</span>
+    </span>
+</div>
+
+<div class="view-component-wrapper pl-4 pr-4" *ngIf="serviceDetails">
+    <!-- <app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+    <app-title-with-back-arrow [titleWithBack]="titleWithBack"></app-title-with-back-arrow> -->
+    <div class="view-component mt-23">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Service group :</span>
+                        <span class="font-medium-16 ml-13">{{serviceDetails.serviceName}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">BE Name :</span><span
+                        class="d-inline-block font-medium-16 ml-13">{{serviceDetails.businessName}}</span>
+                    </div>
+
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16"># services :</span><span
+                            class="d-inline-block font-medium-16 ml-13">{{serviceDetails.services}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Created Date :</span>
+                        <span class="d-inline-block font-medium-16 ml-13">{{serviceDetails.createdTimestamp | date:'mediumDate'}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Product :</span>
+                        <span class="d-inline-block font-medium-16 ml-13">{{serviceDetails.productName}}</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            </div>
+            <div class="row">
+            <div class="col-7">
+                <div class="d-flex justify-content-between">
+                    <div class="mt-4">
+                        <span class="font-semi-bold-16"> Select Service :</span>
+                        <div class="font-light-14 ml-13 d-inline-block">
+                            <div class="btn-group" ngbDropdown role="group"
+                                aria-label="Button group with nested dropdown">
+                                
+                                    <button class="btn btn-primary"
+                                        ngbDropdownToggle>{{activeSubServiceStatus}}</button>
+                                    <div class="dropdown-menu" ngbDropdownMenu>
+                                        <div *ngFor="let item of serviceData">
+                                            <button ngbDropdownItem
+                                                (click)="selectActiveSubServiceStatus(item)">{{item.apiName}}</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="font-semi-bold-16">Status :</span>
+                        <ng-container *ngIf="statusItems">
+                            <span class="d-inline-block ml-2" style="width:10px;height: 10px;border-radius: 50%;"
+                                [style]="statusColors[getStatus(serviceDetails)]"></span>
+                              <span class="ml-2">{{getStatus(serviceDetails)}} </span>
+                            </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    
+
+    <div class="detail-info mt-4 mb-4" *ngIf="serviceDetails">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <a ngbNavLink>Summary</a>
+                <ng-template ngbNavContent>
+                    <div class="summary-section">
+                        <p class="summary-total">Total Subscribers: <span>{{serviceDetails.subscribers}}</span></p>
+                        <div class="d-flex flex-column">
+                            <label class="summary-label">Select Subscribers</label>
+                            <div class="d-inline-block font-light-14">
+                                <div class="col-4 p-0">
+        
+                                    <ng-select [items]="selectSubscribers" [bindValue]="'subscriberId'" [bindLabel]="'userName'" [clearable]="false" [(ngModel)]="selectedSubscriber"></ng-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-between align-items-end">
+                            <div class="d-flex justify-content-between">
+                                
+                                <div class="d-flex flex-column">
+                                    <label class="summary-label">From</label>
+                                    <div class="d-inline-block font-light-14">
+                                        <mat-form-field class="summary-datepicker summary-dropdown">
+                                            <input matInput [matDatepicker]="fromPicker" [formControl]="fromDate">
+                                            <mat-datepicker-toggle matSuffix [for]="fromPicker">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #fromPicker></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <label class="summary-label">To</label>
+                                    <div class="d-inline-block font-light-14">
+                                        <mat-form-field class="summary-datepicker summary-dropdown">
+                                            <input matInput [matDatepicker]="toPicker" [formControl]="toDate">
+                                            <mat-datepicker-toggle matSuffix [for]="toPicker">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #toPicker></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <label class="summary-label"></label>
+                                    <button class="summary-button" (click)="downloadLogs()">Download Logs</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="font-16-header mt-4">Weekly Status</div>
+                        <div class="d-flex justify-content-between mt-4 col-8 p-0">
+                            <div class="card d-flex flex-column">
+                                <div class="font-15-text">No. of Hits</div>
+                                <div class="font-24-bold">{{totalHit}}</div>
+                            </div>
+                            <div class="card d-flex flex-column">
+                                <div class="font-15-text">No. of Success</div>
+                                <div class="font-24-bold">{{sucessHit}}</div>
+                            </div>
+                            <div class="card d-flex flex-column">
+                                <div class="font-15-text">No. of Fail</div>
+                                <div class="font-24-bold">{{failureHit}}</div>
+                            </div>
+                        </div>
+                        <div class="chart mt-4 col p-0">
+                            <ngx-charts-line-chart
+                                [legend]="legend" 
+                                [results]="chartData" 
+                                [scheme]="colorScheme" 
+                                [view]="view" 
+                                [xAxis]="true" 
+                                [yAxis]="true" 
+                                [showGridLines]="true">
+                            </ngx-charts-line-chart>
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <a ngbNavLink>Detailed Information</a>
+                <ng-template ngbNavContent>
+                    <div class="summary-section">
+                        <div class="mt-4 d-flex justify-content-between align-items-end">
+                            <div class="d-flex col-6 p-0">
+                                
+                                <div class="d-flex flex-column col-6 pl-0">
+                                    <label class="summary-label">Select Subscribers</label>
+                                    <div class="d-inline-block font-light-14">
+                                        <div class="p-0">
+                
+                                            <ng-select [items]="selectSubscribers" [bindValue]="'subscriberId'" [bindLabel]="'userName'" [clearable]="false" [(ngModel)]="selectedSubscriber"></ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column col-6">
+                                    <label class="summary-label">Period</label>
+                                    <div class="d-inline-block font-light-14">
+                                        <mat-form-field class="summary-datepicker summary-dropdown" style="width:100%">
+                                            <input matInput [matDatepicker]="toPicker" [formControl]="toDate">
+                                            <mat-datepicker-toggle matSuffix [for]="toPicker">
+                                            </mat-datepicker-toggle>
+                                            <mat-datepicker #toPicker></mat-datepicker>
+                                          </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex flex-column">
+                                    <label class="summary-label"></label>
+                                    <button class="summary-button">Download Logs</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="font-16-header mt-4">API logs</div>
+                        <div class="font-14-text log-card mt-4">
+                           <!-- {{serviceDetails.apiOutput}} -->
+                           <table mat-table [dataSource]="dataSource" class="mt-4" *ngIf="dataSource.length >0">
+
+                            <!--- Note that these columns can be defined in any order.
+                                  The actual rendered columns are set as a property on the row definition" -->
+                          
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="apiInput">
+                              <th mat-header-cell *matHeaderCellDef>Api Input</th>
+                              <td mat-cell *matCellDef="let element"> {{serviceDetails.apiInput}} </td>
+                            </ng-container>
+                          
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="apiOutput">
+                              <th mat-header-cell *matHeaderCellDef>Api Output</th>
+                              <td mat-cell *matCellDef="let element"> {{serviceDetails.apiOutput}} </td>
+                            </ng-container>
+                          
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="apiUrl">
+                              <th mat-header-cell *matHeaderCellDef> Api Url</th>
+                              <td mat-cell *matCellDef="let element"> {{serviceDetails.apiUrl}} </td>
+                            </ng-container>
+                          
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          </table>
+                        </div>
+                        </div>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+
+    </div>

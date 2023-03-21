@@ -1,0 +1,34 @@
+<mat-dialog-content class="commom-modal">
+  <span (click)="close()" class="commom-modal-close">
+    <img alt="Close" src="/assets/close.svg" />
+  </span>
+  <div *ngIf="data.type === 'logout'" class="logout">
+    <p class="logout-head my-3 pl-3">Log out</p>
+    <p class="logout-body my-3 py-2 pl-3">Are you sure you want to log out</p>
+    <div class="text-right">
+      <button class="btn logout-cancel" (click)="data.callback(data, 'cancel')">
+        Cancel
+      </button>
+      <button class="btn logout-ok" (click)="data.callback(data, 'ok')">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <app-message-popup *ngIf="data.type === 'message'" [data]="data">
+  </app-message-popup>
+
+  <div *ngIf="data.type === 'warning'" class="warning">
+    <p class="warning-head my-3 pl-3">{{data.title}}</p>
+    <p class="warning-body my-3 py-2 pl-3" [ngStyle]="data?.descriptClass">{{data.description}}</p>
+    <div class="text-right">
+      <button class="btn" [ngClass]="[data.firstBtnClass || '']" (click)="data.callback(data, data.firstBtn)">
+        {{data.firstBtn}}
+      </button>
+      <button class="btn" [ngClass]="[data.secondBtnClass || '']" (click)="data.callback(data, data.secondBtn)">
+        {{data.secondBtn}}
+      </button>
+    </div>
+  </div>
+
+</mat-dialog-content>

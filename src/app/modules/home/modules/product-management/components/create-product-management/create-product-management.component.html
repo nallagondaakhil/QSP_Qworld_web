@@ -1,0 +1,95 @@
+<div class="mt-2 pl-4 ml-4 font-medium-12">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer" style="font-size: 16px;">Product Management / </span>
+        <span class="text-primary" style="font-size: 16px;">
+            Create Product</span>
+    </span>
+</div>
+
+<div class="card p-4">
+    <div class="card-header">
+        Create Product
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="submitProductData()" [formGroup]="createProductForm" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="productName" class="form-label-16">Product Name</label>
+                    <input type="text" class="form-control" id="businessEntityName" placeholder="Product Name"
+                        formControlName="productName" style="background: white">
+                    <app-control-messages [control]="f['productName']"></app-control-messages>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="businessEntity" class="form-label-16">Business Entity</label>
+                    <ng-select [searchable]="false" (change)="selectBusinessEntity($event)" [clearable]="false"
+                        labelForId="businessEntity" formControlName="businessEntity" [items]="businessList"
+                        [bindLabel]="'businessName'" [bindValue]="'businessName'">
+                    </ng-select>
+                    <app-control-messages [control]="f['businessEntity']"></app-control-messages>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <!---- <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="businessEntityAdmin" class="form-label-16">Business Entity Admin</label>
+                        <ng-select [searchable]="false" (change)="selectUserAdmin($event)" [clearable]="false" labelForId="businessEntityAdmin"
+                        formControlName="businessEntityAdmin" [items]="userList" [bindLabel]="'username'"
+                        [bindValue]="'userid'">
+        
+                    </ng-select>
+                            <app-control-messages [control]="f['businessEntityAdmin']"></app-control-messages>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                </div> -->
+            <!----  <div class="form-row">
+                    <div class="form-group col-md-4">  
+                        <label for="businessEntityAdminEmail" class="form-label-16">Business Entity Admin Email</label>
+                        <input type="email" class="form-control" id="businessEntityAdminEmail" placeholder="Business Entity Admin Email"
+                            formControlName="businessEntityAdminEmail">
+                            
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                </div> -->
+            <div class="form-row">
+                <div class="col-md-2">
+                    Is the Business Entity active?*
+                </div>
+                <div class="col-md-2 text-right">
+                    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="isActive">
+                        <label ngbButtonLabel class="btn-primary"
+                            [class.radio-active]="createProductForm.value['isActive']!=='Y'">
+                            <input ngbButton type="radio" value="Y">Yes
+                        </label>
+                        <label ngbButtonLabel class="btn-primary"
+                            [class.radio-active]="createProductForm.value['isActive']!=='N'">
+                            <input ngbButton type="radio" value="N"> No
+                        </label>
+
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4" style="margin-left: -22px;">
+                    <button type="submit" [disabled]="createProductForm.invalid" class="btn btn-primary ml-4"
+                        style="width: 72px;">Save</button>
+                    <button type="button" (click)="discrdButton()" class="btn btn-outline-secondary"
+                        style="margin-left: 14px;">Discard</button>
+
+
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+    </div>
+</div>

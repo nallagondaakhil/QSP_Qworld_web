@@ -1,0 +1,21 @@
+{
+  "/api-service-proxy": {
+    "target": "https://cloud-gateway-dev.azurewebsites.net",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-service-proxy": ""
+    }
+  },
+  "/api-login-proxy": {
+    "target": "https://user-service-dev.azurewebsites.net/",
+    "secure": true,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-login-proxy": ""
+    }
+  }
+
+}

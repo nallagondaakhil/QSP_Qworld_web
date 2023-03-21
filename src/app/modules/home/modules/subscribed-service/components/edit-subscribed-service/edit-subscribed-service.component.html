@@ -1,0 +1,163 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Subscriber Management / </span> <span
+            class="text-primary"> Edit Subscriber Details</span>
+    </span>
+</div>
+<!-- <div class="view-component-wrapper pl-4 pr-4"> -->
+<div class="edit-service-management-wrapper">
+    <!-- <app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+            <app-title-with-back-arrow [titleWithBack]="titleWithBack"></app-title-with-back-arrow> -->
+    <!-- <div class="mt-4 mb-4" >
+            <div >Edit Subscriber</div> -->
+    <div class="editalign">Edit Payroll service pending group</div>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="border: 1px solid #D4E5F9;">
+        <li [ngbNavItem]="1">
+
+            <a ngbNavLink>General Information</a>
+            <ng-template ngbNavContent>
+                <form (ngSubmit)="submitGeneralServiceData()" [formGroup]="editGeneralServiceForm">
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <div class="form-group col-md-3">
+                            <label for="serviceType" class="form-label-16">Service name</label>
+                            <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                formControlName="serviceType" [items]="serviceTypes" bindLable="label"
+                                bindValue="value">
+
+                            </ng-select>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceType" class="form-label-16">Service Type</label>
+                            <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                bindLable="label" bindValue="value">
+
+                            </ng-select>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceName" class="form-label-16">Service Description</label>
+                            <input type="text" class="form-control" id="serviceName" placeholder="Service Name" formControlName="serviceName">
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <div class="form-group col-md-3">
+                            <label for="serviceType" class="form-label-16">Business Entity</label>
+                            <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                bindLable="label" bindValue="value">
+
+                            </ng-select>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceType" class="form-label-16">Product</label>
+                            <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                bindLable="label" bindValue="value">
+
+                            </ng-select>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceName" class="form-label-16">Unit Cost</label>
+                            <input type="text" class="form-control" id="serviceName" placeholder="Service Name"
+                                formControlName="serviceName">
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <div class="form-group col-md-3">
+                            <label for="serviceName" class="form-label-16">Total Subscribers</label>
+                            <input type="text" class="form-control" id="serviceName" placeholder="Service Name"
+                                formControlName="serviceName">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceName" class="form-label-16">Transaction Limit</label>
+                            <input type="text" class="form-control" id="serviceName" placeholder="Service Name"
+                                formControlName="serviceName">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="serviceType" class="form-label-16">Transaction Limit Period</label>
+                            <ng-select [searchable]="false" [clearable]="false" labelForId="serviceType"
+                                bindLable="label" bindValue="value">
+
+                            </ng-select>
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <button type="submit" class="btn btn-primary ml-2" style="margin-right: 18px;">Save &
+                            Proceed</button>
+                        <button class="btn btn-outline-secondary">Discard</button>
+
+                    </div>
+
+                </form>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Technical Information</a>
+            <ng-template ngbNavContent>
+                <form (ngSubmit)="submitTechnicalServiceData()" [formGroup]="editTechnicalServiceForm">
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <div class="form-group col-md-3">
+                            <label for="apiName" class="form-label-16">API URL</label>
+                            <input type="text" class="form-control" id="apiName" placeholder="API details"
+                                formControlName="apiName">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="apiDescription" class="form-label-16">API Method</label>
+                            <input type="text" class="form-control" id="apiDescription" placeholder="API key"
+                                formControlName="apiDescription">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="form-group col-md-3">
+                            <label for="apiMethod" class="form-label-16">API Key</label>
+                            <input type="text" class="form-control" id="apiMethod" placeholder="parameter"
+                                formControlName="apiMethod">
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+                        <div class="form-group col-md-3">
+                            <label for="apiFormat" class="form-label-16">API Documentation</label>
+                            <input type="text" class="form-control" id="apiFormat" placeholder="download files"
+                                formControlName="apiFormat">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row" style="margin-top: 33px;
+                            margin-left: 36px;">
+
+                        <button type="submit" class="btn btn-primary ml-2" style="margin-right: 18px;">Save &
+                            Proceed</button>
+                        <button class="btn btn-outline-secondary">Discard</button>
+
+                    </div>
+                </form>
+            </ng-template>
+        </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav"></div>
+    <!-- </div> -->
+</div>
+<!-- </div> -->

@@ -1,0 +1,90 @@
+<div class="mt-2 pl-4 ml-4 font-medium-12">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Product Billing / </span> <span class="text-primary">Billing</span>
+    </span>
+</div>
+
+<div class="view-component-wrapper" *ngIf="serviceDetails">
+    <div class="detail-info mt-4 mb-4">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <a ngbNavLink>Billing</a>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Product Name :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.apiName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Service Name :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.serviceType}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            No of API hit per day :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.serviceDesc}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            No of API hit per month :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.businessName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            No of API hit per yearly :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.productName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Percentage of storage:
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.visibility}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Cost per hit monthly :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                           {{serviceDetails.subscribers}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Billing Cycle :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                           {{serviceDetails.subscribers}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Billing Amount :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                           {{serviceDetails.subscribers}}
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+</div>

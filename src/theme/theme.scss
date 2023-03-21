@@ -1,0 +1,230 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+/*
+ * Global application theme.
+ * Framework overrides and customization goes here.
+ */
+
+@font-face {
+  font-family: poppinsRegular;
+  src: url("/assets/Fonts/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: poppinsBold;
+  src: url("/assets/Fonts/Poppins/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: poppinsSemiBold;
+  src: url("/assets/Fonts/Poppins/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: poppinsLight;
+  src: url("/assets/Fonts/Poppins/Poppins-Light.ttf");
+}
+
+@font-face {
+  font-family: poppinsMedium;
+  src: url("/assets/Fonts/Poppins/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: poppinsRegularThin;
+  src: url("/assets/Fonts/Poppins/Poppins-Thin.ttf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: poppinsRegular !important;
+  font-size: 14px;
+}
+
+.row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.heading {
+  font-size: 24px;
+  font-family: poppinsBold;
+  letter-spacing: 0px;
+  color: #383a45;
+  opacity: 1;
+}
+.form-label-16 {
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #383a45;
+  opacity: 1;
+}
+
+.page-heading {
+  font-size: 20px;
+  font-family: poppinsSemiBold;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.sub-heading {
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #383a45;
+  opacity: 1;
+}
+
+.form-control {
+  background: #ededed 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  opacity: 1;
+  padding: 16px;
+  color: #8f9bb3;
+  font-size: 15px;
+  font-family: poppinsRegular;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+.position-right-10 {
+  right: 10px;
+}
+.position-top-8 {
+  top: 8px;
+}
+.mt-42 {
+  margin-top: 42px;
+}
+
+.mt-7 {
+  margin-top: 7px;
+}
+.mt-44 {
+  margin-top: 44px;
+}
+
+.mb-22 {
+  margin-bottom: 22px !important;
+}
+.mb-32 {
+  margin-bottom: 32px !important;
+}
+
+.mb-26 {
+  margin-bottom: 26px !important;
+}
+
+.mt-59 {
+  margin-top: 59px;
+}
+.mb-26 {
+  margin-bottom: 59px;
+}
+.ml-8 {
+  margin-left: 8px;
+}
+
+.mt-17 {
+  margin-top: 17px;
+}
+
+.mt-14 {
+  margin-top: 14px;
+}
+.mt-23 {
+  margin-top: 23px;
+}
+
+.mt-26 {
+  margin-top: 26px;
+}
+.ml-13 {
+  margin-left: 13px;
+}
+.font-medium-12 {
+  font-size: 12px;
+  font-family: poppinsMedium;
+  letter-spacing: 0px;
+  color: #222b45;
+}
+
+.font-semi-bold-20 {
+  font-size: 20px;
+  font-family: poppinsSemiBold;
+  letter-spacing: 0px;
+  color: #222b45;
+  opacity: 1;
+}
+
+.font-semi-bold-16 {
+  font-size: 16px;
+  font-family: poppinsSemiBold;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  opacity: 1;
+}
+
+.font-medium-16 {
+  font-size: 16px;
+  font-family: poppinsMedium;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  opacity: 1;
+}
+
+.font-light-14 {
+  font-size: 14px;
+  font-family: poppinsLight;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  opacity: 1;
+}
+
+.font-medium-12 {
+  font-size: 12px;
+  font-family: poppinsMedium;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}
+
+datatable-scroller {
+  width: 100% !important;
+}
+
+.color-white {
+  color:#FFFFFF;
+}
+.font-weight-600 {
+  font-family: poppinsSemiBold;
+}
+
+.font-16-header {
+  font-size:16px;
+  color:#757AA0;
+} 
+
+.font-15-text {
+  font-size:16px;
+  color:#757AA0;
+}
+
+.font-24-bold {
+  
+    font-size: 24px;
+    font-family: poppinsBold;
+    letter-spacing: 0px;
+    color: #212961;
+    opacity: 1;
+  
+}
+
+.font-14-text {
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: #707070;
+  opacity: 1;
+}

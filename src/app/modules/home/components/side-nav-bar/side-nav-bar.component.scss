@@ -1,0 +1,34 @@
+#sidebar-wrapper {
+    height: 100vh;
+    
+  }
+  .z-index-9999 {
+    z-index:99999;
+  }
+  .sidebar-logo {
+    padding: 64px 45px;
+  }
+  
+  .list-group-item {
+    background-color:inherit;
+  }
+  
+  .list-group-item-action {
+    color:#FFFFFF;
+    font-size: 14px;
+    font-family: poppinsMedium;
+  }
+  .full-height {
+    min-height: calc(100vh - 173px);
+  }
+  .margin-top-auto {
+    margin-top:auto;
+  }
+
+  .active {
+    background: #F8FCFD 0% 0% no-repeat padding-box;
+    opacity: 1;
+    letter-spacing: 0px;
+    color: #3366FB;
+    opacity: 1;
+  }

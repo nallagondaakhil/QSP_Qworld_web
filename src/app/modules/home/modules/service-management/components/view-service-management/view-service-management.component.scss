@@ -1,0 +1,30 @@
+.boxdecor{
+    width: 343px;
+    height: 36px;
+}
+.edit-data{
+    width: 96%;
+    margin: auto;
+    margin-top: 10px;
+    padding: 19px 23px 18px 23px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #70707042;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.detail-info{
+    padding: 24px 0px 22px 0px;
+    width: 95%;
+    margin: auto;
+}
+
+.detail-info ul{
+    border: 1px solid #D4E5F9;
+}
+.nav-link.active, .nav-item.show .nav-link {
+    opacity: 1;
+    border-bottom: 3px solid #3366fb;
+    color: black;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+}

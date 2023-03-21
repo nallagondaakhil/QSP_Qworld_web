@@ -1,0 +1,294 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Product & Service / </span> <span class="text-primary">
+            View Payroll service group</span>
+    </span>
+</div>
+
+<div class="view-component-wrapper pl-4 pr-4" *ngIf="serviceDetails">
+    <!-- <app-breadcrumb [breadcrumbList]="breadcrumbList"></app-breadcrumb>
+    <app-title-with-back-arrow [titleWithBack]="titleWithBack"></app-title-with-back-arrow> -->
+    <div class="view-component mt-23">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Service group :</span>
+                        <span class="font-medium-16 ml-13">{{serviceDetailsData.serviceDesc}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">BE Name :</span><span
+                            class="d-inline-block font-medium-16 ml-13">{{serviceDetailsData.businessName}}</span>
+                    </div>
+
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16"># services :</span><span
+                            class="d-inline-block font-medium-16 ml-13">{{serviceDetailsData.services}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Published date :</span>
+                        <span class="d-inline-block font-medium-16 ml-13">{{serviceDetailsData.updatedTimestamp}}</span>
+                    </div>
+                    <div class="mt-26">
+                        <span class="font-semi-bold-16">Product :</span>
+                        <span class="d-inline-block font-medium-16 ml-13">{{serviceDetailsData.productName}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-7">
+                <div class="d-flex justify-content-between">
+                    <div class="mt-4">
+                        <span class="font-semi-bold-16"> Select Service :</span>
+                        <div class="font-light-14 ml-13 d-inline-block">
+                            <div class="btn-group" ngbDropdown role="group"
+                                aria-label="Button group with nested dropdown">
+
+                                <button class="btn btn-primary" ngbDropdownToggle>{{activeSubServiceStatus}}</button>
+                                <div class="dropdown-menu" ngbDropdownMenu>
+                                    <div *ngFor="let item of serviceData">
+                                        <button ngbDropdownItem
+                                            (click)="selectActiveSubServiceStatus(item)">{{item.apiName}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="font-semi-bold-16">Status :</span>
+                        <button type="button" class="btn btn-danger" style="margin-left: 10px;" (click)="subscriber()">Subscribe</button>
+                        <!-- <ng-container *ngIf="statusItems">
+                            <span class="d-inline-block ml-2" style="width:10px;height: 10px;border-radius: 50%;"
+                                [style]="statusColors[getStatus(serviceDetails)]"></span>
+                            <span class="ml-2">{{getStatus(serviceDetails)}} </span>
+                        </ng-container> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="view-component-wrapper" *ngIf="serviceDetails">
+        <div class="detail-info mt-4 mb-4">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>General Information</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Service Name :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.serviceName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Service Type :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.serviceType}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Service Description :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.serviceDesc}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Bussiness Entity :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.businessName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Product :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.productName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Visibility :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.visibility}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Unit Cost :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.unitCost}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Total Suscribers :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.subscribers}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Transaction Limit Period :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.transactionLimitPeriod}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                Transaction Limit :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.transactionLimit}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>Technical Information</a>
+                    <ng-template ngbNavContent>
+                        <div class="row" style="background: #FFFFFF;">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                <h5>prerequisite 1</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Name :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Description :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiDesc}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Method :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiMethod}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Format :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiFormat}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API I/P :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiInput}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API O/P :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiOutput}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Slug :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiSlug}}
+                            </div>
+                        </div>
+                        <div class="row" style="background: #FFFFFF;">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                <h5>Main API Service</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Name :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiName}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Description :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiDesc}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Method :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiMethod}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Format :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiFormat}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API I/P :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiInput}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API O/P :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiOutput}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 first-column font-semi-bold-16">
+                                API Slug :
+                            </div>
+                            <div class="col-8 second-column font-light-14">
+                                {{serviceDetailsData.apiSlug}}
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav"> </div>
+        </div>
+    </div>
+</div>

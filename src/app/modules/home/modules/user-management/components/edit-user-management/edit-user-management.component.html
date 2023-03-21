@@ -1,0 +1,98 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">User Management / </span> <span class="text-primary">Edit User</span>
+    </span>
+</div>
+<div class="p-4">
+    <div class="card-header">
+       Edit User
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="submitUserData()" [formGroup]="editUserForm" autocomplete="off">
+            <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="userName" class="form-label-16">User Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="User Name"
+                    formControlName="userName" style="background: white">
+                <app-control-messages [control]="f['userName']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+           </div>
+           <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="userEmailId" class="form-label-16">User Email ID</label>
+                <input type="text" class="form-control" id="userEmailId" placeholder="User Email ID"
+                    formControlName="userEmailId" style="background: white">
+                    <app-control-messages [control]="f['userEmailId']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+           <div class="form-row">
+            <div class="form-group col-md-4">  
+                <label for="userGroup" class="form-label-16">Select role group for the user</label>
+                <ng-select [searchable]="false" (change)="selectRole($event)" [clearable]="false" labelForId="userGroup"
+                        formControlName="userGroup" [items]="userGroupData" [bindLabel]="'roleType'"
+                        [bindValue]="'roleType'">
+                    </ng-select>
+                    <app-control-messages [control]="f['userGroup']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2">  
+                Is the User active?*
+            </div>
+            <div class="col-md-2 text-right">
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="isActive">
+                    <label ngbButtonLabel class="btn-primary" [class.radio-active]="editUserForm.value['isActive']!=='Y'">
+                      <input ngbButton type="radio" value="Y">Yes
+                    </label>
+                    <label ngbButtonLabel class="btn-primary" [class.radio-active]="editUserForm.value['isActive']!=='N'">
+                      <input ngbButton type="radio" value="N"> No
+                    </label>
+                    
+                  </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">  
+                <label for="lastLoginDate" class="form-label-16">Last Login Date</label>
+                <input type="text" class="form-control" id="lastLoginDate" placeholder="Last Login Date"
+                    formControlName="lastLoginDate">
+                    <app-control-messages [control]="f['lastLoginDate']"></app-control-messages>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4">  
+                <span>Do you want to reset Password for the user?</span>
+                <span class="ml-2"><a href="javascript:void(0)">Reset Password</a></span>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row mt-2">
+            <div class="col-md-5">  
+                <span>Do you want to Resend invitation for the user?</span>
+                <span class="ml-2"><a href="javascript:void(0)">Resend Invitation</a></span>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row mt-4">
+            <div class="form-group col-md-4">
+                <button type="submit" [disabled]="editUserForm.invalid" class="btn btn-primary">Save</button>
+                <button type="button" (click)="discardButton()" class="btn btn-outline-secondary ml-4">Discard</button>
+            </div>
+           <div class="col-md-4"></div>
+           <div class="col-md-4"></div>
+        </div>
+    </form>
+    </div>
+  </div>

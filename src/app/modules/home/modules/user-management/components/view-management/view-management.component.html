@@ -1,0 +1,98 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">User Management / </span> <span class="text-primary">
+            User</span>
+    </span>
+</div>
+
+<div class="card-body">
+    <form autocomplete="off">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <span>
+                    <img src="/assets/images/user.png" alt="user icon" class="user_icon" style=" margin-left: 10px;
+                    margin-top: 13px;
+                    width: 180px;">
+                </span>
+            </div>
+            <div class="col-md-4">
+                <!-- {{userDetails | json}} -->
+                <div class="nameStyle">
+                    {{userDetails.username}}
+                </div>
+                <div class="subNameStyle">
+                    <b>Email ID:</b> {{userDetails.userEmailId}}
+                </div>
+                <div class="subNameStyle">
+                    <span>Status :</span>
+                    <span class="ml-2">
+                        <!-- <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                            [style]="statusColors[userStatus[userDetails.status]]"></span>
+                        <span>{{userStatus[userDetails.status]}} </span> -->
+                        <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                        [style]="statusColors[getStatus(userDetails)]"></span>
+                      <span>{{getStatus(userDetails)}} </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="subNameStyle1">
+                    <b>Created Date:</b> {{userDetails.createdTimestamp}}
+                </div>
+                <div style="margin-left: 380px;
+                margin-top: -101px;">
+                    <img src="/assets/images/edit_icon.svg" alt="expand icon" class="expand_icon" (click)="editUser($event)">
+                </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+
+        <!-- <div class="form-row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2 text-right">
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div> -->
+    </form>
+</div>
+<div>
+    <table mat-table [dataSource]="dataSource" class="mt-4" style="width: 95%;
+        margin: auto;">
+
+        <!-- - Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"><b>Product</b></th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element?.productName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="serviceGroup">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> <b>Service Name</b></th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element?.serviceGroup}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="userType">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;"><b>User Type</b></th>
+            <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element?.userType}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

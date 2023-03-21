@@ -1,0 +1,103 @@
+<div class="mt-2 pl-4 ml-4 font-medium-16">
+    <span>
+        <span (click)="navigateBack()" class="cursor-pointer">Subscriber Management / </span> <span class="text-primary"> View Subscriber Details</span>
+    </span>
+</div>
+
+<div class="view-component-wrapper pl-4 pr-4" *ngIf="serviceDetails" style="height: 70vh;">
+    <div class="detail-info mt-4 mb-4">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+            <li [ngbNavItem]="1">
+                <a ngbNavLink>General Information</a>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Subscriber Name :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.apiName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Subcription date :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.createdTimestamp}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Service type :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.serviceType}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Billing cycle :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.transactionLimitPeriod}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Transaction limit period :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.transactionLimitPeriod}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Transaction limit :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.transactionLimit}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Status :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                           {{serviceDetails.apiStatus}}
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+                <a ngbNavLink>Technical Information</a>
+                <ng-template ngbNavContent>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            API details :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.apiName}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            API key :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.apiDesc}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 first-column font-semi-bold-16">
+                            Parameter :
+                        </div>
+                        <div class="col-8 second-column font-light-14">
+                            {{serviceDetails.apiMethod}}
+                        </div>
+                    </div>
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+</div>

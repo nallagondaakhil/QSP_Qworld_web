@@ -1,0 +1,58 @@
+<div class="p-4 component-wrapper">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2 d-flex-justify-items-center">
+                    <img src="/assets/images/flat-user-icon-png-3@2x.png" alt="">
+                </div>
+                <div class="col-md-6 d-flex flex-column">
+                    <div>{{currentUser.username}}</div>
+                    <div class="mt-2">
+                        <span>Email ID :</span>
+                        <span class="ml-2">{{currentUser.userEmailId}}</span>
+                    </div>
+                    <div class="mt-2">
+                        <span>Status :</span>
+                        <span class="ml-2">
+                            <span class="d-inline-block mr-2" style="width:10px;height: 10px;border-radius: 50%;"
+                  [style]="statusColors[userStatus[currentUser.status]]"></span>
+                <span>{{userStatus[currentUser.status]}} </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end">
+                    <span>
+                        <img src="/assets/images/edit_icon.svg" alt="expand icon" class="expand_icon"
+                      >
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <table mat-table [dataSource]="dataSource" class="mt-4" *ngIf="dataSource.length >0">
+
+            <ng-container matColumnDef="product">
+              <th mat-header-cell *matHeaderCellDef>Product</th>
+              <td mat-cell *matCellDef="let element"> {{element?.product}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="serviceName">
+              <th mat-header-cell *matHeaderCellDef> Service name </th>
+              <td mat-cell *matCellDef="let element"> {{element?.serviceName}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="userType">
+              <th mat-header-cell *matHeaderCellDef> User Type </th>
+              <td mat-cell *matCellDef="let element"> {{element?.uerType}} </td>
+            </ng-container>
+          
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+
+</div>

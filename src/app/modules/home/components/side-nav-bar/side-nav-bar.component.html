@@ -1,0 +1,21 @@
+<div class="d-flex">
+  <div class="border-end bg-primary position-fixed z-index-9999" id="sidebar-wrapper">
+    <div class="sidebar-logo">
+      <img src="/assets/images/logo-footer.png" alt="">
+    </div>
+    <div class="list-group list-group-flush text-white full-height">
+      <a class="list-group-item list-group-item-action border-0" [routerLink]="item.link" routerLinkActive="active"
+        *ngFor="let item of sidebarItems">
+        <img [src]="item.imgUrl" alt="">
+        <span class="d-inline-block ml-8">{{item.pageName}}</span>
+      </a>
+      <a class="list-group-item list-group-item-action border-0 margin-top-auto" (click)="logout()" href="javascript:void(0)">
+        <div>
+          <img src="/assets/images/logout_black_24dp.svg" alt="log out">
+          <span class="d-inline-block ml-8">Logout</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
